@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fce8fd; /* 연보라색 배경 */
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #7b4397; /* 보라색 텍스트 */
+        }
+
+        div {
+            margin: 10px 0;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #7b4397; /* 보라색 테두리 */
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #7b4397; /* 보라색 버튼 */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <h1>회원가입</h1>
+        <div> email <input type="email" id="signUpEmail" /> </div>
+        <div> password <input type="password" id="signUpPassword" /> </div>
+        <button type="submit" id="signUpButton" >회원가입 하기</button>
+    </form>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-analytics.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js";
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyBdtbYhVe2UGIWqb4D9XNmjRSspKRsUoHI",
+          authDomain: "sitelogin-3d747.firebaseapp.com",
+          projectId: "sitelogin-3d747",
+          storageBucket: "sitelogin-3d747.appspot.com",
+          messagingSenderId: "5261864699",
+          appId: "1:5261864699:web:7e2c9516bff37e998a8a5e",
+          measurementId: "G-5YG687MTRH"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+        const auth = getAuth();
+
+        document.getElementById('signUpButton').addEventListener('click', async (event) => {
+            event.preventDefault();
+            const signUpEmail = document.getElementById('signUpEmail').value;
+            const signUpPassword = document.getElementById('signUpPassword').value;
+
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword);
+                console.log(userCredential);
+                alert('회원가입에 성공했습니다!');
+                // 여기에 페이지 이동 코드를 추가하세요
+                window.location.href = "index.html";
+            } catch (error) {
+                console.error('회원가입 에러:', error.code, error.message);
+            }
+        });
+
+        document.getElementById('signInButton').addEventListener('click', async (event) => {
+            event.preventDefault();
+            const signInEmail = document.getElementById('signInEmail').value;
+            const signInPassword = document.getElementById('signInPassword').value;
+
+            try {
+                const userCredential = await signInWithEmailAndPassword(auth, signInEmail, signInPassword);
+                console.log(userCredential);
+                alert('로그인에 성공했습니다!');
+                // 여기에 페이지 이동 코드를 추가하세요
+                window.location.href = "index.html";
+            } catch (error) {
+                console.error('로그인 에러:', error.code, error.message);
+            }
+        });
+    </script>
+</body>
+</html>

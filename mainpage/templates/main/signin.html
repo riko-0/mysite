@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
+    <link rel="stylesheet" href="test.css"> <!-- test.css 파일을 연결합니다. -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fce8fd;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #7b4397;
+        }
+
+        input {
+            margin: 10px;
+            padding: 5px;
+            border: 1px solid #7b4397;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #7b4397;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>로그인</h2>
+
+        <label for="username">사용자 이름:</label>
+        <input type="text" id="username" placeholder="사용자 이름을 입력하세요">
+
+        <label for="password">비밀번호:</label>
+        <input type="password" id="password" placeholder="비밀번호를 입력하세요">
+
+        <button id="login">로그인</button>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var loginButton = document.getElementById("login");
+
+            loginButton.addEventListener("click", function () {
+                var username = document.getElementById("username").value;
+                var password = document.getElementById("password").value;
+
+                // 실제 로그인 기능을 구현할 때는 백엔드에서 사용자 인증을 수행해야 합니다.
+                // 여기서는 간단한 예시로 'testuser'와 'password'로 고정된 값으로 로그인을 확인합니다.
+                if (username === 'testuser' && password === 'password') {
+                    alert('로그인 성공!');
+                    // 로그인 성공 시 다른 페이지로 이동하도록 설정하거나 필요한 동작을 추가합니다.
+                } else {
+                    alert('로그인에 실패했습니다. 비밀번호와 사용자 아이디를 다시 확인해주세요.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

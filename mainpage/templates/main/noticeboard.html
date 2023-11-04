@@ -1,0 +1,143 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>리듬채팅방</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/noticeboard.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+        }
+
+        header img {
+            max-width: 300px; /* 원하는 크기로 조절하세요 */
+            height: auto;
+        }
+
+        #chat-input-area {
+            display: flex;
+            align-items: center;
+        }
+
+        #chat-input-area input,
+        #chat-input-area textarea {
+            margin: 5px;
+        }
+
+        #chat-input-area button {
+            margin: 5px;
+            white-space: nowrap; /* 버튼 텍스트가 한 줄로 표시되도록 설정 */
+        }
+
+        #chat-input-area textarea {
+            resize: none; /* 텍스트 영역 크기 조절 불가능하게 설정 */
+        }
+    </style>
+</head>
+<body>
+    <header>
+    <img src="{% static 'images/Rhythm Bank.png' %}" alt="설명">
+    </header>
+    <section id="post-section"></section>
+
+    <div id="chat-input-area">
+        <input type="text" id="nickname-input" placeholder="닉네임">
+        <button id="nickname-save-button" onclick="saveNickname()">저장</button>
+        <textarea id="chat-content" rows="4" placeholder="채팅 내용 입력" onkeydown="if (event.key === 'Enter') addChat()"></textarea>
+        <button onclick="addChat()">전송</button>
+    </div>
+
+    <div id="modal">
+        <div id="modal-content">
+            <span id="close-modal" onclick="closeViewPostsModal()">&times;</span>
+            <section id="post-section-view"></section>
+        </div>
+    </div>
+
+    <script src="{% static 'js/list.js' %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            loadSavedPosts();
+            loadChatHistory();
+            loadNickname(); // 닉네임 로드 추가
+        });
+
+        function loadSavedPosts() {
+            // 이전 글 불러오는 코드
+        }
+
+        function addPostToDOM(title, content) {
+            // 이전 글 추가하는 코드
+        }
+
+        function openViewSinglePostModal(title, content) {
+            // 단일 글 모달 열기 코드
+        }
+
+        function closeViewPostsModal() {
+            // 글 보기 모달 닫기 코드
+        }
+
+        function openViewPostsModal() {
+            closeViewPostsModal();
+            var modal = document.getElementById('modal');
+            modal.style.display = 'block';
+        }
+
+        function closeAddPostModal() {
+            // 글 추가 모달 닫기 코드
+        }
+
+        function addPost() {
+            // 글 추가 코드
+        }
+
+        function loadChatHistory() {
+            // 채팅 내용 불러오기 (이부분은 서버와 연동하여야 함)
+            loadChatHistoryFromLocalStorage();
+            displayChatHistory();
+        }
+
+        function addChat() {
+            var nickname = document.getElementById('nickname-input').value;
+            var content = document.getElementById('chat-content').value;
+
+            // 여기서 서버로 채팅 내용 전송 및 저장하는 로직이 필요
+
+            // 아래 라인을 추가하여 채팅 내용을 배열에 추가하고 화면에 표시합니다.
+            addChatToHistory(nickname, content);
+            displayChatHistory();
+
+            document.getElementById('chat-content').value = ''; // 입력 필드 초기화
+        }
+
+        function saveNickname() {
+            var nickname = document.getElementById('nickname-input').value;
+            localStorage.setItem('nickname', nickname); // 닉네임 저장 로직 추가
+            alert('닉네임이 저장되었습니다.');
+        }
+
+        function loadNickname() {
+            var storedNickname = localStorage.getItem('nickname');
+            if (storedNickname) {
+                document.getElementById('nickname-input').value = storedNickname;
+            }
+        }
+    </script>
+</body>
+</html>

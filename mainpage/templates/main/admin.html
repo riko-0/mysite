@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>채팅 관리자</title>
+    <link rel="stylesheet" href="noticeboard.css"> <!-- noticeboard.css에서 디자인 가져오기 -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        #chat-input-area textarea {
+            resize: none; /* 텍스트 영역 크기 조절 불가능하게 설정 */
+        }
+
+        .delete-button {
+            cursor: pointer;
+            color: red;
+            font-weight: bold;
+        }
+
+        .delete-button:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>어드민용 채팅 관리자</h1>
+    </header>
+    <section id="post-section"></section>
+
+    <div id="modal">
+        <div id="modal-content">
+            <span id="close-modal" onclick="closeViewPostsModal()">&times;</span>
+            <section id="post-section-view"></section>
+        </div>
+    </div>
+
+    <script src="list.js"></script> <!-- list.js에서 채팅 기능 추가 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            loadSavedPosts();
+            loadChatHistory();
+            loadNickname(); // 닉네임 로드 추가
+        });
+
+        function loadSavedPosts() {
+            // 이전 글 불러오는 코드
+        }
+
+        function addPostToDOM(title, content) {
+            // 이전 글 추가하는 코드
+        }
+
+        function openViewSinglePostModal(title, content) {
+            // 단일 글 모달 열기 코드
+        }
+
+        function closeViewPostsModal() {
+            // 글 보기 모달 닫기 코드
+        }
+
+        function openViewPostsModal() {
+            closeViewPostsModal();
+            var modal = document.getElementById('modal');
+            modal.style.display = 'block';
+        }
+
+        function closeAddPostModal() {
+            // 글 추가 모달 닫기 코드
+        }
+
+        function addPost() {
+            // 글 추가 코드
+        }
+
+        function loadChatHistory() {
+            // 채팅 내용 불러오기 (이부분은 서버와 연동하여야 함)
+            loadChatHistoryFromLocalStorage();
+            displayChatHistory();
+        }
+
+        function addChat() {
+            var nickname = document.getElementById('nickname-input').value;
+            var content = document.getElementById('chat-content').value;
+
+            // 여기서 서버로 채팅 내용 전송 및 저장하는 로직이 필요
+
+            // 아래 라인을 추가하여 채팅 내용을 배열에 추가하고 화면에 표시합니다.
+            addChatToHistory(nickname, content);
+            displayChatHistory();
+
+            document.getElementById('chat-content').value = ''; // 입력 필드 초기화
+        }
+
+        function displayChatHistory() {
+            var postSection = document.getElementById('post-section');
+            postSection.innerHTML = ''; // 기존 채팅 내용 비우기
+
+            chatHistory.forEach(function (chat, index) {
+                var article = createChatElement(chat.nickname, chat.content, index);
+                postSection.appendChild(article);
+            });
+        }
+
+        function createChatElement(nickname, content, index) {
+            var article = document.createElement('article');
+            var h2 = document.createElement('h2');
+            var p = document.createElement('p');
+            var deleteButton = document.createElement('span');
+
+            h2.textContent = nickname;
+            p.textContent = content;
+            deleteButton.textContent = '삭제';
+            deleteButton.className = 'delete-button';
+
+            deleteButton.onclick = function () {
+                // 삭제 버튼을 눌렀을 때의 동작
+                deleteChat(index);
+                displayChatHistory();
+            };
+
+            article.appendChild(h2);
+            article.appendChild(p);
+            article.appendChild(deleteButton);
+
+            return article;
+        }
+
+        function deleteChat(index) {
+            // 여기에서 실제 삭제 동작을 구현
+            chatHistory.splice(index, 1);
+            saveChatHistoryToLocalStorage();
+        }
+
+        function saveChatHistoryToLocalStorage() {
+            localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
+        }
+
+        function loadChatHistoryFromLocalStorage() {
+            var storedChatHistory = localStorage.getItem('chatHistory');
+            if (storedChatHistory) {
+                chatHistory = JSON.parse(storedChatHistory);
+            }
+        }
+
+        function loadNickname() {
+            var storedNickname = localStorage.getItem('nickname');
+            if (storedNickname) {
+                document.getElementById('nickname-input').value = storedNickname;
+            }
+        }
+    </script>
+
+    <footer>
+        <p>&copy; admin.html 관리: zelly ㅣ chat manager 관리: zelly</p>
+    </footer>
+</body>
+</html>

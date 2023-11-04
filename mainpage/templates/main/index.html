@@ -1,0 +1,90 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Dance of Fire and Ice Forum</title>
+    <link rel="stylesheet" href="test.css"> <!-- test.css 파일을 연결합니다. -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fce8fd;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        h1, h2 {
+            color: #7b4397;
+        }
+
+        p {
+            color: #7b4397;
+        }
+
+        button {
+            background-color: #7b4397;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>리듬포럼에 오신걸 환영합니다!</h1>
+        <p>저희 포럼을 이용하시려면 회원가입, 로그인 절차가 필요합니다.</p>
+        <p>(비회원은 댓글쓰기와 게시판 등록이 불가합니다.)</p>
+
+        <button id="showSignUp">회원 가입</button>
+        <button id="showSignIn">로그인</button> <!-- 추가된 버튼 -->
+
+        <button id="showDeveloperPage">개발자 소개 페이지</button>
+        <button id="showNoticeBoard">게시판 이동</button>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var signUpButton = document.getElementById("showSignUp");
+            var signInButton = document.getElementById("showSignIn"); // 추가된 버튼
+            var developerPageButton = document.getElementById("showDeveloperPage");
+            var noticeBoardPageButton = document.getElementById("showNoticeBoard"); // 수정된 변수 이름
+
+            signUpButton.addEventListener("click", function () {
+                window.location.href = "signup"; // 회원 가입 페이지로 이동
+            });
+
+            signInButton.addEventListener("click", function () {
+                window.location.href = "signin"; // 로그인 페이지로 이동
+            });
+
+            developerPageButton.addEventListener("click", function () {
+                window.location.href = "developer"; // 개발자 소개 페이지로 이동
+            });
+
+            noticeBoardPageButton.addEventListener("click", function () {
+                window.location.href = "noticeboard"; // 게시판 페이지로 이동
+            });
+        });
+    </script>
+</body>
+</html>
