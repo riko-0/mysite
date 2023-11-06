@@ -1,14 +1,9 @@
-
-{% load static %}
-
 <!DOCTYPE html>
-
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>리듬채팅방</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/noticeboard.css' %}">
+    <title>채팅방</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -46,6 +41,70 @@
 
         #chat-input-area textarea {
             resize: none; /* 텍스트 영역 크기 조절 불가능하게 설정 */
+        }
+
+        #post-section {
+            max-width: 800px;
+            margin: 20px auto 50px; /* 조절 가능 */
+            background-color: #36393f; /* 디스코드 메인 채팅창 배경색 */
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px; /* 둥글게 처리 */
+        }
+
+        #post-section h2, #post-section p {
+            color: white; /* 채팅 내용 글자 색상 */
+        }
+
+        #chat-input-area {
+            position: fixed;
+            bottom: 10px; /* 조절 가능 */
+            width: calc(100% - 20px); /* 조절 가능 */
+            background-color: #36393f; /* 디스코드 어두운 배경색 */
+            padding: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid #4f545c; /* 디스코드 상단 선 색상 */
+            border-radius: 20px;
+        }
+
+        #chat-input-area input[type="text"],
+        #chat-input-area textarea {
+            width: calc(100% - 18px); /* 조절 가능 */
+            padding: 8px;
+            resize: none;
+            background-color: #40444b;
+            color: white; /* 글자 색상을 하얀색으로 변경 */
+            border: none;
+            border-radius: 8px;
+        }
+
+        #chat-input-area button {
+            background-color: #5865f2; /* 디스코드 전송 버튼 색상 */
+            color: white; /* 글자 색상을 하얀색으로 변경 */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        #chat-input-area textarea {
+            resize: none;
+            height: 2em; /* 높이를 조절하세요 */
+            border-radius: 15px; /* 더 부드러운 모서리를 위해 조절하세요 */
+        }
+
+        #modal-content {
+            display: none; /* 숨김 처리 */
+            background-color: #40444b; /* 디스코드 모달 배경색 */
+            color: white; /* 글자 색상을 하얀색으로 변경 */
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #4f545c; /* 디스코드 모달 테두리 색상 */
+            width: 80%;
+            border-radius: 10px;
         }
     </style>
 </head>
